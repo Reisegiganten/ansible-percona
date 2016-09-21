@@ -1,25 +1,26 @@
 ---
 # Define root password for percona server
-root_password: reallylongpassword
+percona_root_password: reallylongpassword
 
 # Some defaults variables for percona server config file
-port: 3306
-bind_address: 0.0.0.0
-max_allowed_packet: 16M
-key_buffer: 16M
-thread_stack: 192K
-thread_cache_size: 8
-# Uncomment following vars if you want to log queries
-sqldebug: true
-log_slow_queries: log_slow_queries    = /var/log/mysql/mysql-slow.log
-long_query_time: long_query_time      = 2
-log_queries_not_using_indexes: log-queries-not-using-indexes
+percona_port: 3306
+percona_bind_address: 0.0.0.0
+percona_max_allowed_packet: 16M
+percona_key_buffer: 16M
+percona_thread_stack: 192K
+percona_thread_cache_size: 8
+
+# Query logging
+percona_sqldebug: false
+percona_log_slow_queries: log_slow_queries    = /var/log/mysql/mysql-slow.log
+percona_long_query_time: long_query_time      = 2
+percona_log_queries_not_using_indexes: log-queries-not-using-indexes
 
 # Define is a database must be created
-create_app_db: true
-db_name: mydatabase
-db_collation: utf8_general_ci
-db_user: myuser
-db_user_password: anotherreallylongpassword
-db_host: "%"
-db_dump_file: ""
+percona_create_app_db: false
+percona_db_name: mydatabase
+percona_db_collation: utf8_general_ci
+percona_db_user: myuser
+percona_db_user_password: anotherreallylongpassword
+percona_db_host: "%"
+percona_db_dump_file: ""
