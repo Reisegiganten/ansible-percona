@@ -4,4 +4,4 @@
 - include: repo.yml
 - include: install.yml
 - include: createdatabase.yml
-  when: create_app_db
+  when: percona_create_app_db
