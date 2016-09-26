@@ -19,6 +19,11 @@
 - name: Copy .my.cnf file into the root home folder
   template: src=root-my-cnf.j2 dest=/root/.my.cnf owner=root mode=0600
 
+- name: Write custom server configuration
+  template: src=my.cnf.j2 dest=/etc/mysql/my.cnf owner=root mode=0644
+  notify:
+          - restart percona
+          
 - name: Update MySQL root password
   mysql_user: name=root host={{ item }} password={{ percona_root_password }} login_user=root login_password={{ percona_root_password }} check_implicit_admin=yes
   with_items:
@@ -44,7 +49,3 @@
 - name: Create murmur_hash
   shell: /usr/bin/mysql -e "CREATE FUNCTION murmur_hash RETURNS INTEGER SONAME 'libmurmur_udf.so'" && touch /var/log/libmurmur_udf.so.done creates=/var/log/libmurmur_udf.so.done
 
-- name: Write custom server configuration
-  template: src=my.cnf.j2 dest=/etc/mysql/my.cnf owner=root mode=0644
-  notify:
-          - restart percona

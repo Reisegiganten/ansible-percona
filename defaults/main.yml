@@ -5,15 +5,33 @@ percona_root_password: reallylongpassword
 # Some defaults variables for percona server config file
 percona_port: 3306
 percona_bind_address: 0.0.0.0
-percona_max_allowed_packet: 16M
+percona_max_allowed_packet: 64M
+percona_enable_bin_log: false
 percona_key_buffer: 16M
-percona_thread_stack: 192K
-percona_thread_cache_size: 8
+
+
+# Caches and limits
+percona_tmp_table_size: 32M
+percona_max_heap_table_size: 32M
+percona_query_cache_type: 0
+percona_query_cache_size: 0
+percona_max_connections: 1000
+percona_thread_cache_size: 100
+percona_open_files_limit: 65535
+percona_table_definition_cache:	4096
+percona_table_open_cache: 4096
+
+# innodb
+percona_innodb_flush_method: O_DIRECT
+percona_innodb_log_files_in_group: 2
+percona_innodb_log_file_size: 256M
+percona_innodb_flush_log_at_trx_commit: 0
+percona_innodb_file_per_table: 1
 
 # Query logging
 percona_sqldebug: false
-percona_log_slow_queries: log_slow_queries    = /var/log/mysql/mysql-slow.log
-percona_long_query_time: long_query_time      = 2
+percona_log_slow_queries: '/var/log/mysql/mysql-slow.log'
+percona_long_query_time:  2
 percona_log_queries_not_using_indexes: log-queries-not-using-indexes
 
 # Define is a database must be created
